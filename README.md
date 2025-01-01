@@ -1,59 +1,266 @@
-# AngularEslintPrettierStarter
+# Angular ESLint + Prettier Starter
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+## Overview
 
-## Development server
+This project is a starter template for Angular applications with **ESLint** and **Prettier** integrated. It ensures consistent code quality and formatting across your project, following best practices for modern Angular development.
 
-To start a local development server, run:
+## Features
 
-```bash
-ng serve
-```
+- **ESLint**: Linting for TypeScript and Angular-specific files.
+- **Prettier**: Automatic code formatting for consistent style.
+- **SCSS Support**: Configured to lint SCSS files in addition to TypeScript and HTML.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Software and Tools
 
-## Code scaffolding
+This project template is built using the following tools and their major versions:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Angular**: Version `19.0.5`
+- **Angular CLI**: Version `19.0.6`
+- **Node.js**: Version `22.12.0`
+- **Yarn**: Version `1.22.22`
+- **TypeScript**: Version `5.6.3`
+- **ESLint**: Version `9.17.0`
+- **Prettier**: Version `3.4.2`
+- **@angular-eslint**: Version `19.0.2`
 
-```bash
-ng generate component component-name
-```
+## Setup Instructions (How to Use the Template)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Step 1: Clone the Repository
 
 ```bash
-ng build
+git clone git@github.com:edwinmambo/angular-eslint-prettier-starter.git
+
+cd angular-eslint-prettier-starter
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Step 2: Install Dependencies
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Install all required dependencies using Yarn:
 
 ```bash
-ng test
+yarn install
 ```
 
-## Running end-to-end tests
+### Step 3: Run Linting
 
-For end-to-end (e2e) testing, run:
+Use the following command to check your project for linting issues:
 
 ```bash
-ng e2e
+yarn lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+To automatically fix linting issues, run the following command:
 
-## Additional Resources
+```bash
+yarn lint:fix
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Step 4: Format Code
+
+Use the following command to format your codebase:
+
+```bash
+yarn format
+```
+
+To automatically fix formatting issues with prettier, run the following command:
+
+```bash
+yarn format:fix
+```
+
+### Step 5: Start the Application
+
+Run the following command to start the Angular application:
+
+```bash
+yarn start
+```
+
+Navigate to `http://localhost:4200/` in your browser to view the application.
+
+## How This Template Was Made
+
+### **Step 1: Create an Angular Project**
+
+1. Run the Angular CLI command to create a new project:
+
+   ```bash
+   ng new angular-eslint-prettier-starter --style=scss --routing
+   ```
+
+   - Selected **SCSS** as the default style format.
+
+2. Navigate to the project directory:
+   ```bash
+   cd angular-eslint-prettier-starter
+   ```
+
+### **Step 2: Add ESLint**
+
+1. Install Angular ESLint using the CLI:
+
+   ```bash
+   ng add @angular-eslint/schematics
+   ```
+
+2. Update the `angular.json` file to include the `@angular-eslint/builder:lint`:
+
+   ```json
+   "lint": {
+     "builder": "@angular-eslint/builder:lint",
+     "options": {
+       "lintFilePatterns": [
+         "src/**/*.ts",
+         "src/**/*.html",
+         "src/**/*.scss"
+       ]
+     }
+   }
+   ```
+
+3. Add rules for Angular component and directive selectors in the `.eslintrc` file:
+   _Note_: You can delete the eslint.config.js file and add .eslintrc or .eslintrc.json for consistency and add the below configuration in the file.
+
+   ```json
+   {
+     "parserOptions": {
+       "project": "./tsconfig.json"
+     },
+     "plugins": ["prettier"],
+     "overrides": [
+       {
+         "files": ["**/*.ts"],
+         "extends": [
+           "eslint:recommended",
+           "plugin:@typescript-eslint/recommended",
+           "plugin:@typescript-eslint/stylistic",
+           "plugin:@angular-eslint/recommended",
+           "plugin:prettier/recommended"
+         ],
+         "rules": {
+           "@angular-eslint/directive-selector": [
+             "error",
+             {
+               "type": "attribute",
+               "prefix": "app",
+               "style": "camelCase"
+             }
+           ],
+           "@angular-eslint/component-selector": [
+             "error",
+             {
+               "type": "element",
+               "prefix": "app",
+               "style": "kebab-case"
+             }
+           ]
+         }
+       },
+       {
+         "files": ["**/*.html"],
+         "extends": [
+           "plugin:@angular-eslint/template/recommended",
+           "plugin:@angular-eslint/template/accessibility"
+         ],
+         "rules": {
+           "prettier/prettier": "error"
+         }
+       }
+     ]
+   }
+   ```
+
+### **Step 3: Add Prettier**
+
+1. Install Prettier and related ESLint plugins:
+
+   ```bash
+   yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier
+   ```
+
+2. Create a `.prettierrc` file to configure Prettier:
+
+   ```json
+   {
+     "tabWidth": 2,
+     "useTabs": false,
+     "singleQuote": true,
+     "semi": true,
+     "bracketSpacing": true,
+     "arrowParens": "avoid",
+     "trailingComma": "es5",
+     "bracketSameLine": true,
+     "printWidth": 80,
+     "endOfLine": "auto"
+   }
+   ```
+
+3. Create a `.prettierignore` file to exclude specific files and directories:
+
+   ```plaintext
+   node_modules/
+   dist/
+   coverage/
+   ```
+
+4. Integrate Prettier with ESLint by updating `.eslintrc.json`:
+   ```json
+   {
+     "plugins": ["prettier"],
+     "extends": [
+       "eslint:recommended",
+       "plugin:@typescript-eslint/recommended",
+       "plugin:@typescript-eslint/stylistic",
+       "plugin:@angular-eslint/recommended",
+       "plugin:prettier/recommended"
+     ],
+     "rules": {
+       "prettier/prettier": "error"
+     }
+   }
+   ```
+
+### **Step 4: Add a Format Script**
+
+1. Add a `format` script to the `package.json` file:
+
+   ```json
+   "scripts": {
+     "lint": "ng lint",
+     "lint:fix": "ng lint --fix",
+     "format": "prettier --check \"src/**/*.{ts,html,scss}\"",
+     "format:fix": "prettier --write \"src/**/*.{ts,html,scss}\""
+   }
+   ```
+
+2. Test the script to ensure it formatted the codebase:
+   ```bash
+   yarn format
+   ```
+
+### **Step 5: Run Linting and Formatting**
+
+1. Run the linting script to check for issues:
+
+   ```bash
+   yarn lint
+   ```
+
+2. Run the formatting script to ensure consistent code style:
+
+   ```bash
+    yarn format
+   ```
+
+3. To automatically fix linting and formatting issues, run the following commands:
+   ```bash
+   yarn lint:fix
+   yarn format:fix
+   ```
+
+## Conclusion
+
+This project template provides a solid foundation for Angular applications with ESLint and Prettier integrated. It ensures consistent code quality and formatting across your project, following best practices for modern Angular development.
+
+Feel free to customize the ESLint and Prettier configurations to suit your specific needs and preferences. Happy coding!
