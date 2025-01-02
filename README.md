@@ -1,16 +1,16 @@
-# Angular ESLint + Prettier Starter
+# 🌟 Angular ESLint + Prettier Starter
 
-## Overview
+## 📖 Overview
 
 This project is a starter template for Angular applications with **ESLint** and **Prettier** integrated. It ensures consistent code quality and formatting across your project, following best practices for modern Angular development.
 
-## Features
+## ✨ Features
 
-- **ESLint**: Linting for TypeScript and Angular-specific files.
-- **Prettier**: Automatic code formatting for consistent style.
-- **SCSS Support**: Configured to lint SCSS files in addition to TypeScript and HTML.
+- 🛠️ **ESLint**: Linting for TypeScript and Angular-specific files.
+- 🎨 **Prettier**: Automatic code formatting for consistent style.
+- 🎨 **SCSS Support**: Configured to lint SCSS files in addition to TypeScript and HTML.
 
-## Software and Tools
+## 🧰 Software and Tools
 
 This project template is built using the following tools and their major versions:
 
@@ -23,17 +23,21 @@ This project template is built using the following tools and their major version
 - **Prettier**: Version `3.4.2`
 - **@angular-eslint**: Version `19.0.2`
 
-## Setup Instructions (How to Use the Template)
+## 🚀 Setup Instructions (How to Use the Template)
 
-### Step 1: Clone the Repository
+### Step 1: Clone the Repository 🐙
 
 ```bash
 git clone git@github.com:edwinmambo/angular-eslint-prettier-starter.git
-
-cd angular-eslint-prettier-starter
 ```
 
-### Step 2: Install Dependencies
+### Step 2: Install Dependencies 📦
+
+Run the following command to navigate to the project directory:
+
+```bash
+cd angular-eslint-prettier-starter
+```
 
 Install all required dependencies using Yarn:
 
@@ -41,7 +45,21 @@ Install all required dependencies using Yarn:
 yarn install
 ```
 
-### Step 3: Run Linting
+### Step 3: Format Code 🎯
+
+Use the following command to format your codebase:
+
+```bash
+yarn format
+```
+
+To automatically fix formatting issues with Prettier, run the following command:
+
+```bash
+yarn format:fix
+```
+
+### Step 4: Run Linting ✅
 
 Use the following command to check your project for linting issues:
 
@@ -55,21 +73,7 @@ To automatically fix linting issues, run the following command:
 yarn lint:fix
 ```
 
-### Step 4: Format Code
-
-Use the following command to format your codebase:
-
-```bash
-yarn format
-```
-
-To automatically fix formatting issues with prettier, run the following command:
-
-```bash
-yarn format:fix
-```
-
-### Step 5: Start the Application
+### Step 5: Start the Application 🌐
 
 Run the following command to start the Angular application:
 
@@ -79,7 +83,7 @@ yarn start
 
 Navigate to `http://localhost:4200/` in your browser to view the application.
 
-## How This Template Was Made
+## 🔧 How This Template Was Made
 
 ### **Step 1: Create an Angular Project**
 
@@ -120,7 +124,6 @@ Navigate to `http://localhost:4200/` in your browser to view the application.
    ```
 
 3. Add rules for Angular component and directive selectors in the `.eslintrc` file:
-   _Note_: You can delete the eslint.config.js file and add .eslintrc or .eslintrc.json for consistency and add the below configuration in the file.
 
    ```json
    {
@@ -192,7 +195,21 @@ Navigate to `http://localhost:4200/` in your browser to view the application.
      "trailingComma": "es5",
      "bracketSameLine": true,
      "printWidth": 80,
-     "endOfLine": "auto"
+     "endOfLine": "auto",
+     "overrides": [
+       {
+         "files": "*.html",
+         "options": {
+           "parser": "html"
+         }
+       },
+       {
+         "files": "*.component.html",
+         "options": {
+           "parser": "angular"
+         }
+       }
+     ]
    }
    ```
 
@@ -202,23 +219,7 @@ Navigate to `http://localhost:4200/` in your browser to view the application.
    node_modules/
    dist/
    coverage/
-   ```
-
-4. Integrate Prettier with ESLint by updating `.eslintrc.json`:
-   ```json
-   {
-     "plugins": ["prettier"],
-     "extends": [
-       "eslint:recommended",
-       "plugin:@typescript-eslint/recommended",
-       "plugin:@typescript-eslint/stylistic",
-       "plugin:@angular-eslint/recommended",
-       "plugin:prettier/recommended"
-     ],
-     "rules": {
-       "prettier/prettier": "error"
-     }
-   }
+   .angular/
    ```
 
 ### **Step 4: Add a Format Script**
@@ -229,14 +230,9 @@ Navigate to `http://localhost:4200/` in your browser to view the application.
    "scripts": {
      "lint": "ng lint",
      "lint:fix": "ng lint --fix",
-     "format": "prettier --check \"src/**/*.{ts,html,scss}\"",
-     "format:fix": "prettier --write \"src/**/*.{ts,html,scss}\""
+     "format": "prettier --check \"src/**/*.{ts,html,scss,json}\"",
+     "format:fix": "prettier --write \"src/**/*.{ts,html,scss,json}\""
    }
-   ```
-
-2. Test the script to ensure it formatted the codebase:
-   ```bash
-   yarn format
    ```
 
 ### **Step 5: Run Linting and Formatting**
@@ -250,17 +246,11 @@ Navigate to `http://localhost:4200/` in your browser to view the application.
 2. Run the formatting script to ensure consistent code style:
 
    ```bash
-    yarn format
+   yarn format
    ```
 
-3. To automatically fix linting and formatting issues, run the following commands:
-   ```bash
-   yarn lint:fix
-   yarn format:fix
-   ```
-
-## Conclusion
+## 🎉 Conclusion
 
 This project template provides a solid foundation for Angular applications with ESLint and Prettier integrated. It ensures consistent code quality and formatting across your project, following best practices for modern Angular development.
 
-Feel free to customize the ESLint and Prettier configurations to suit your specific needs and preferences. Happy coding!
+Feel free to customize the ESLint and Prettier configurations to suit your specific needs and preferences. Happy coding! 🚀
