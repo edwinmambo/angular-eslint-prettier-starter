@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "format": "prettier --check \"src/**/*.{ts,html,scss}\"",
-    "format:fix": "prettier --write \"src/**/*.{ts,html,scss}\""
+    "format": "prettier --check \"src/**/*.{ts,html,scss,json}\"",
+    "format:fix": "prettier --write \"src/**/*.{ts,html,scss,json}\""
   },
   "private": true,
   "dependencies": {
