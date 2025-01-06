@@ -14,9 +14,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{ts,scss,html}": [
+    "*.{js,ts,scss,html}": [
       "eslint --fix",
-      "prettier --check"
+      "prettier --write"
     ]
   },
   "config": {
